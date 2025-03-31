@@ -1,0 +1,633 @@
+:root {
+    --primary: #FF007A; /* Neon pink (Uniswap-inspired) */
+    --background: #000000; /* Black background */
+    --text: #FFFFFF; /* White text */
+    --button-bg: #1A1A1A; /* Dark button background */
+    --button-text: #FF007A; /* Pink button text */
+    --hover-dark: #FF4DA6; /* Lighter pink for hover */
+    --accent-pink: #FF66B2; /* Secondary pink for accents */
+    --glow: 0 0 10px #FF007A, 0 0 20px #FF007A, 0 0 30px #FF66B2; /* Neon glow effect */
+    --success: #28a745; /* Green for success */
+    --warning: #dc3545; /* Red for warning */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif; /* Matches your HTML font */
+    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat, linear-gradient(135deg, #000000 0%, #1A1A1A 100%);
+    color: var(--text);
+    position: relative;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 0, 122, 0.2) 0%, transparent 70%);
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.navbar .logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-shadow: var(--glow);
+    text-decoration: none;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.navbar a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar a:hover,
+.navbar a:focus {
+    color: var(--primary);
+    outline: none;
+}
+
+/* Header */
+.header {
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.header-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-shadow: var(--glow);
+    animation: glow 2s infinite;
+}
+
+.header-content .catchphrase {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 1rem 0;
+}
+
+@keyframes glow {
+    0% { text-shadow: var(--glow); }
+    50% { text-shadow: 0 0 5px #FF007A, 0 0 10px #FF66B2; }
+    100% { text-shadow: var(--glow); }
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Section */
+.section {
+    padding: 2rem 0;
+}
+
+.section h2 {
+    text-align: center;
+    color: var(--primary);
+    text-shadow: var(--glow);
+    animation: glow 2s infinite;
+    margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.cta-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: var(--button-bg);
+    color: var(--button-text);
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+    background: var(--hover-dark);
+    transform: scale(1.05);
+    outline: none;
+}
+
+.simulator-cta {
+    background: var(--button-bg);
+    border: 2px solid var(--primary);
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    color: var(--button-text);
+}
+
+.simulator-cta:hover {
+    background: var(--hover-dark);
+    border-color: var(--hover-dark);
+}
+
+/* Grid Layouts */
+.token-benefits-list,
+.testimonials-container,
+.roadmap-timeline,
+.team-container,
+.token-sale-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.token-benefit,
+.testimonial,
+.roadmap-item,
+.team-member,
+.token-sale-item {
+    background: #1A1A1A;
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+}
+
+.token-benefit:hover,
+.testimonial:hover,
+.roadmap-item:hover,
+.team-member:hover,
+.token-sale-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 0, 122, 0.3);
+}
+
+.token-benefit i,
+.why-choose i,
+.how-to-invest i,
+.services i {
+    font-size: 2.5rem;
+    color: var(--accent-pink);
+    margin-bottom: 0.5rem;
+}
+
+.roadmap-item {
+    text-align: left;
+    border-left: 4px solid var(--primary);
+    border-radius: 0 12px 12px 0;
+}
+
+/* Before and After Section */
+.before-after {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.before-after .before,
+.before-after .after {
+    background: #3A3A3A;
+    padding: 1.5rem;
+    border-radius: 12px;
+    flex: 1;
+    min-width: 280px;
+}
+
+.before-after h3::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    color: var(--accent-pink);
+}
+
+.before-after .before h3::before {
+    content: "\f05e"; /* fa-ban */
+}
+
+.before-after .after h3::before {
+    content: "\f015"; /* fa-home */
+}
+
+/* Simulator Form */
+.simulator-form {
+    background: #1A1A1A;
+    padding: 1.5rem;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 1rem auto;
+}
+
+.simulator-form .step {
+    display: none;
+}
+
+.simulator-form .step.active {
+    display: block;
+}
+
+.simulator-form label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+    font-weight: bold;
+    color: var(--accent-pink);
+}
+
+.simulator-form input,
+.simulator-form select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: #2A2A2A;
+    color: var(--text);
+}
+
+.simulator-form input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #2A2A2A;
+    border-radius: 5px;
+    outline: none;
+    margin: 0.5rem 0;
+}
+
+.simulator-form input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--glow);
+}
+
+.simulator-form .tooltip {
+    cursor: help;
+    color: var(--accent-pink);
+    margin-left: 5px;
+}
+
+.simulator-form .highlight {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.simulator-form .highlight.success {
+    background: var(--success);
+}
+
+.simulator-form .highlight.warning {
+    background: var(--warning);
+}
+
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.progress-bar .step-indicator {
+    width: 30px;
+    height: 30px;
+    background: #2A2A2A;
+    color: var(--text);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.progress-bar .step-indicator.active {
+    background: var(--primary);
+    box-shadow: var(--glow);
+}
+
+/* Swap Form (Uniswap-inspired) */
+.swap-form.uniswap-inspired {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(255, 0, 122, 0.2);
+    max-width: 450px;
+    margin: 1rem auto;
+    border: 1px solid rgba(255, 0, 122, 0.3);
+}
+
+.swap-input-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.swap-input-group label {
+    font-size: 0.9rem;
+    color: var(--primary);
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.swap-input-group input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem;
+    background: #3A3A3A;
+    border: none;
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.swap-input-group .token-symbol {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-25%);
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.swap-arrow {
+    text-align: center;
+    margin: 0.5rem 0;
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.swap-button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary);
+    color: var(--text);
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--glow);
+    margin-top: 1.5rem;
+}
+
+.swap-button:hover,
+.swap-button:focus {
+    background: var(--hover-dark);
+    transform: scale(1.02);
+    box-shadow: 0 0 15px #FF007A, 0 0 25px #FF4DA6;
+    outline: none;
+}
+
+.swap-info {
+    font-size: 0.9rem;
+    color: #AAAAAA;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Token Sale */
+.token-sale-item ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.token-sale-item ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Testimonials */
+.testimonial p:last-child {
+    font-style: italic;
+    color: #AAAAAA;
+}
+
+/* Partner Logos */
+.partner-logos {
+    text-align: center;
+    padding: 2rem 0;
+    background: #1A1A1A;
+    border-radius: 12px;
+}
+
+.partner-logos h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: var(--glow);
+    animation: glow 2s infinite;
+}
+
+.partner-logos-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+    justify-items: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.partner-logo {
+    filter: drop-shadow(0 0 5px var(--primary));
+}
+
+.partner-logo text {
+    text-shadow: var(--glow);
+}
+
+.partner-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Crypto Prices */
+.crypto-prices {
+    text-align: center;
+    padding: 1.5rem;
+    background: #1A1A1A;
+    border-radius: 12px;
+}
+
+/* Footer */
+.footer {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: var(--hover-dark);
+}
+
+.social-links a {
+    color: var(--text);
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover,
+.social-links a:focus {
+    color: var(--primary);
+}
+
+.back-to-top {
+    color: var(--primary);
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+}
+
+.modal-content {
+    background: #1A1A1A;
+    margin: 15% auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    color: var(--text);
+}
+
+.close-modal {
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text);
+}
+
+/* Form Inputs in Modal and Subscribe Form */
+#subscribe-form input,
+#demo-form input,
+#demo-form textarea {
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: #2A2A2A;
+    color: var(--text);
+    width: 100%;
+}
+
+#subscribe-form {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+#subscribe-form input {
+    width: 250px;
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .navbar .logo-text {
+        font-size: 1.5rem;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .header-content .catchphrase {
+        font-size: 1.2rem;
+    }
+
+    .token-benefits-list,
+    .testimonials-container,
+    .roadmap-timeline,
+    .team-container,
+    .token-sale-container {
+        grid-template-columns: 1fr;
+    }
+
+    .partner-logos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+
+    .partner-logo {
+        width: 100px;
+        height: 40px;
+    }
+
+    .partner-logo text {
+        font-size: 14px;
+    }
+
+    .simulator-form input,
+    .simulator-form select {
+        font-size: 16px;
+        padding: 0.8rem;
+    }
+
+    .swap-form.uniswap-inspired {
+        padding: 1.5rem;
+    }
+
+    .swap-button {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+}
