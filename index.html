@@ -35,7 +35,7 @@
     }
     </script>
     <style>
-        /* CSS inchangé pour cet exemple */
+        /* CSS inchangé */
         :root {
             --primary: #FF007A;
             --background: #000000;
@@ -305,6 +305,27 @@
             box-shadow: var(--glow);
         }
 
+        .simulator-form .tooltip {
+            cursor: help;
+            color: var(--accent-pink);
+            margin-left: 5px;
+        }
+
+        .simulator-form .highlight {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .simulator-form .highlight.success {
+            background: var(--success);
+        }
+
+        .simulator-form .highlight.warning {
+            background: var(--warning);
+        }
+
         .progress-bar {
             display: flex;
             justify-content: space-between;
@@ -486,7 +507,7 @@
             <section class="section start-section">
                 <h2>Bienvenue chez Legatio</h2>
                 <p>Une plateforme innovante pour explorer des NFTs uniques et obtenir des $LEGS via staking ou participation active.</p>
-                <a href="#simulateur-rewards" class="cta-button simulator-cta" aria-label="Essayer le simulateur">Essayer le Simulateur</a>
+                <a href="#simulateur-rwa" class="cta-button simulator-cta" aria-label="Essayer le simulateur">Essayer le Simulateur</a>
             </section>
 
             <section class="section token-benefits">
@@ -536,7 +557,7 @@
                 <h2>Pourquoi Legatio ?</h2>
                 <p>Legatio Finance vous permet d’explorer des NFTs uniques et de gagner des $LEGS grâce à une plateforme blockchain accessible.</p>
                 <div class="token-benefits-list">
-                    <article class="token-benefit">
+                    <article class="[token-benefit](https://github.com/token-benefit)">
                         <i class="fas fa-door-open"></i>
                         <h3>Accessibilité</h3>
                         <p>Participez dès 100 $ avec des NFTs.</p>
@@ -573,7 +594,7 @@
                         <p>Stakez $LEGS pour des récompenses.</p>
                     </article>
                 </div>
-                <a href="#simulateur-rewards" class="cta-button">Démarrez avec MetaMask</a>
+                <a href="#simulateur-rwa" class="cta-button">Démarrez avec MetaMask</a>
             </section>
 
             <section class="section services">
@@ -697,7 +718,7 @@
             <section class="section partner-logos">
                 <h2>Nos Partenaires</h2>
                 <div class="partner-logos-grid">
-                    <!-- Partenaires SVG inchangés -->
+                    <!-- Logos SVG inchangés pour brièveté -->
                     <a href="https://www.lbank.com/" target="_blank" rel="noopener noreferrer" aria-label="Logo LBank">
                         <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
                             <rect x="5" y="5" width="110" height="40" rx="10" fill="none" stroke="url(#lbankGradient)" stroke-width="2"/>
@@ -705,7 +726,6 @@
                             <circle cx="100" cy="25" r="5" fill="var(--primary)"/>
                         </svg>
                     </a>
-                    <!-- Autres logos inchangés pour brièveté -->
                 </div>
             </section>
 
@@ -716,9 +736,9 @@
                 <p id="silverPrice">Argent: Chargement...</p>
             </section>
 
-            <section class="section" id="simulateur-rewards">
-                <h2>Simulateur de Récompenses</h2>
-                <p>Estimez vos bonus $LEGS en participant à l’écosystème. <a href="#how-to-participate">En savoir plus</a>.</p>
+            <section class="section" id="simulateur-rwa">
+                <h2>Simulateur de Prêt RWA</h2>
+                <p>Calculez votre prêt en fonction de vos actifs tokenisés. <a href="#how-to-participate">En savoir plus sur les prêts</a>.</p>
                 <form class="simulator-form">
                     <div class="progress-bar">
                         <div class="step-indicator active" id="step-1-indicator">1</div>
@@ -730,32 +750,42 @@
                         <button type="button" id="connect-metamask" class="cta-button">Connecter MetaMask <span id="loading-spinner" class="hidden">⏳</span></button>
                         <p id="wallet-address" class="hidden">Adresse connectée : Aucune</p>
                         <p id="error-message" class="hidden" style="color: #e74c3c;"></p>
-                        <label for="activity-type">Activité :</label>
-                        <select id="activity-type" aria-label="Type d’activité">
-                            <option value="staking">$LEGS Staking</option>
-                            <option value="nft" selected>Tenir un NFT</option>
+                        <label for="collateral-type">Type de Collatéral :</label>
+                        <select id="collateral-type" aria-label="Type de collatéral">
+                            <option value="bitcoin">Bitcoin</option>
+                            <option value="pax-gold">Or (PAXG)</option>
+                            <option value="silver-token-xagx">Argent (XAGX)</option>
+                            <option value="immobilier">Immobilier</option>
                         </select>
                         <button type="button" class="cta-button" onclick="nextStep(2)">Suivant</button>
                     </div>
 
                     <div class="step" id="step-2">
-                        <label for="amount">$LEGS ou NFTs :</label>
-                        <input type="range" id="amount" min="0" max="1000" step="1" value="0" oninput="updateAmountValue(this.value)">
-                        <span id="amount-display">0</span>
-                        <label for="duration">Durée (mois) :</label>
-                        <input type="range" id="duration" min="1" max="12" step="1" value="1" oninput="updateDuration(this.value)">
-                        <span id="duration-display">1</span>
+                        <label for="collateral-amount">Valeur du Collatéral (unités) :</label>
+                        <input type="range" id="collateral-amount" min="0" max="100" step="0.01" value="0" oninput="updateCollateralValue(this.value)">
+                        <span id="collateral-amount-display">0</span>
+                        <p>Prix actuel : <span id="collateral-price">$0</span></p>
+                        <label for="loan-duration">Durée du Prêt (mois) :</label>
+                        <input type="range" id="loan-duration" min="1" max="36" step="1" value="12" oninput="updateLoanDuration(this.value)">
+                        <span id="loan-duration-display">12</span>
+                        <label for="interest-rate">Taux d’Intérêt Annuel (%) : <span class="tooltip">ℹ️ Taux appliqué sur le prêt.</span></label>
+                        <input type="range" id="interest-rate" min="0" max="20" step="0.1" value="5" oninput="updateInterestRate(this.value)">
+                        <span id="interest-rate-display">5%</span>
+                        <p>Ratio LTV : <span id="ltv-value" class="highlight">0%</span> <span class="tooltip">ℹ️ Loan-to-Value : % de la valeur empruntée.</span></p>
                         <button type="button" class="cta-button" onclick="nextStep(1)">Précédent</button>
                         <button type="button" class="cta-button" onclick="nextStep(3)">Suivant</button>
                     </div>
 
                     <div class="step" id="step-3">
-                        <div id="reward-results" role="region" aria-live="polite">
-                            <p><strong>Récompenses Estimées :</strong> <span id="reward-amount">0 $LEGS</span></p>
-                            <canvas id="reward-chart" style="max-height: 200px;"></canvas>
+                        <div id="loan-results" role="region" aria-live="polite">
+                            <p><strong>Montant du prêt :</strong> <span id="loan-amount">$0</span></p>
+                            <p><strong>Mensuel :</strong> <span id="monthly-payment">$0</span></p>
+                            <p><strong>Intérêts :</strong> <span id="total-interest">$0</span></p>
+                            <p><strong>Total :</strong> <span id="total-amount">$0</span></p>
+                            <canvas id="loan-chart" style="max-height: 200px;"></canvas>
                         </div>
                         <button type="button" class="cta-button" onclick="nextStep(2)">Précédent</button>
-                        <button type="button" onclick="joinEcosystem()" class="cta-button" id="join-btn">Participer</button>
+                        <button type="button" onclick="requestLoan()" class="cta-button" id="loan-request-btn">Demander un prêt</button>
                         <button type="button" onclick="resetSimulator()" class="cta-button">Réinitialiser</button>
                     </div>
                 </form>
@@ -847,11 +877,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js" defer></script>
     <script>
-        const contractAddress = "0x1234abcd..."; // À remplacer
-        const contractABI = [ /* ABI simplifié pour cet exemple */ ];
+        const contractAddress = "0x1234abcd..."; // Remplacez par l’adresse réelle
+        const contractABI = [
+            {
+                "inputs": [{"internalType": "address", "name": "_jetonCollatéral", "type": "address"}, {"internalType": "uint256", "name": "_montantCollatéral", "type": "uint256"}, {"internalType": "uint256", "name": "_montant", "type": "uint256"}],
+                "name": "ouvrirPret",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [{"internalType": "address", "name": "_utilisateur", "type": "address"}],
+                "name": "ajouterUtilisateurKYC",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [{"internalType": "address", "name": "", "type": "address"}],
+                "name": "utilisateursKYC",
+                "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ];
 
         let provider, signer, contract, userAddress;
-        let livePrices = { bitcoin: 0, 'pax-gold': 0, 'silver-token-xagx': 0 };
+        let livePrices = { bitcoin: 0, 'pax-gold': 0, 'silver-token-xagx': 0, immobilier: 1000 };
         let chart;
 
         async function fetchLivePrices() {
@@ -875,37 +927,62 @@
             document.getElementById('btcPrice').textContent = `Bitcoin: $${livePrices.bitcoin.toLocaleString('fr-FR')}`;
             document.getElementById('goldPrice').textContent = `Or: $${livePrices['pax-gold'].toLocaleString('fr-FR')} / oz`;
             document.getElementById('silverPrice').textContent = `Argent: $${livePrices['silver-token-xagx'].toLocaleString('fr-FR')} / oz`;
+            document.getElementById('collateral-price').textContent = `$${livePrices[document.getElementById('collateral-type').value].toLocaleString('fr-FR')}`;
+            calculateLoan();
         }
 
-        function updateAmountValue(value) {
-            document.getElementById('amount-display').textContent = value;
-            calculateRewards();
+        function updateCollateralValue(value) {
+            document.getElementById('collateral-amount-display').textContent = value;
+            calculateLoan();
         }
 
-        function updateDuration(value) {
-            document.getElementById('duration-display').textContent = value;
-            calculateRewards();
+        function updateLoanDuration(value) {
+            document.getElementById('loan-duration-display').textContent = value;
+            calculateLoan();
         }
 
-        function calculateRewards() {
-            const type = document.getElementById('activity-type').value;
-            const amount = parseFloat(document.getElementById('amount').value) || 0;
-            const duration = parseFloat(document.getElementById('duration').value) || 0;
+        function updateInterestRate(value) {
+            document.getElementById('interest-rate-display').textContent = `${value}%`;
+            calculateLoan();
+        }
 
-            let rewards = 0;
-            if (type === 'staking') rewards = amount * 0.05 * duration; // 5% annuel simplifié
-            else if (type === 'nft') rewards = amount * 10 * duration; // 10 $LEGS par NFT simplifié
+        function calculateLoan() {
+            const type = document.getElementById('collateral-type').value;
+            const amount = parseFloat(document.getElementById('collateral-amount').value) || 0;
+            const duration = parseFloat(document.getElementById('loan-duration').value) || 0;
+            const rate = parseFloat(document.getElementById('interest-rate').value) || 0;
 
-            document.getElementById('reward-amount').textContent = `${rewards.toLocaleString('fr-FR')} $LEGS`;
+            if (!amount || !duration || !rate) {
+                document.getElementById('error-message').textContent = 'Veuillez remplir tous les champs.';
+                return;
+            }
+
+            const value = amount * livePrices[type];
+            const ltv = 0.7;
+            const loan = value * ltv;
+            const monthlyRate = rate / 100 / 12;
+            const payment = (loan * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
+            const total = payment * duration;
+            const interest = total - loan;
+
+            const ltvElement = document.getElementById('ltv-value');
+            ltvElement.textContent = `${(ltv * 100)}%`;
+            ltvElement.classList.remove('success', 'warning');
+            ltvElement.classList.add(ltv * 100 <= 70 ? 'success' : 'warning');
+
+            document.getElementById('loan-amount').textContent = `$${loan.toLocaleString('fr-FR')}`;
+            document.getElementById('monthly-payment').textContent = `$${payment.toLocaleString('fr-FR')}`;
+            document.getElementById('total-interest').textContent = `$${interest.toLocaleString('fr-FR')}`;
+            document.getElementById('total-amount').textContent = `$${total.toLocaleString('fr-FR')}`;
 
             if (chart) chart.destroy();
-            const ctx = document.getElementById('reward-chart').getContext('2d');
+            const ctx = document.getElementById('loan-chart').getContext('2d');
             chart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ['Montant Initial', 'Récompenses'],
+                    labels: ['Capital', 'Intérêts'],
                     datasets: [{
-                        data: [amount, rewards],
+                        data: [loan, interest],
                         backgroundColor: ['#FF007A', '#FF66B2'],
                         borderColor: ['#1A1A1A', '#1A1A1A'],
                         borderWidth: 1
@@ -935,8 +1012,12 @@
                 if (await window.ethereum.request({ method: 'eth_chainId' }) !== '0xa4b1') {
                     await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0xa4b1' }] });
                 }
-                document.getElementById('connect-metamask').textContent = 'Connecté';
-                document.getElementById('error-message').textContent = '';
+                const isKYC = await contract.utilisateursKYC(userAddress);
+                if (!isKYC) document.getElementById('error-message').textContent = 'KYC requis.';
+                else {
+                    document.getElementById('connect-metamask').textContent = 'Connecté';
+                    document.getElementById('error-message').textContent = '';
+                }
             } catch (e) {
                 document.getElementById('error-message').textContent = e.message || 'Erreur de connexion.';
             } finally {
@@ -944,25 +1025,41 @@
             }
         }
 
-        async function joinEcosystem() {
-            alert('Rejoignez-nous sur Telegram ou Discord pour participer !');
+        async function requestLoan() {
+            if (!contract) {
+                alert('Connectez MetaMask d’abord !');
+                return;
+            }
+            try {
+                const type = document.getElementById('collateral-type').value;
+                const amount = ethers.utils.parseUnits(document.getElementById('collateral-amount').value, 18);
+                const loan = ethers.utils.parseUnits(document.getElementById('loan-amount').textContent.replace('$', '').replace(/,/g, ''), 6);
+                const collateralMap = { bitcoin: "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f", 'pax-gold': "0x...", 'silver-token-xagx': "0x...", immobilier: "0x..." };
+                const tx = await contract.ouvrirPret(collateralMap[type], amount, loan);
+                await tx.wait();
+                document.getElementById('error-message').textContent = 'Prêt demandé avec succès !';
+            } catch (e) {
+                document.getElementById('error-message').textContent = e.message || 'Erreur lors de la demande.';
+            }
         }
 
         function nextStep(step) {
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.step-indicator').forEach(s => s.classList.remove('active'));
             document.getElementById(`step-${step}`).classList.add('active');
-            document.getElementById(`step-${step}-indicator').classList.add('active');
-            if (step === 3) calculateRewards();
+            document.getElementById(`step-${step}-indicator`).classList.add('active');
+            if (step === 3) calculateLoan();
         }
 
         function resetSimulator() {
-            document.getElementById('amount').value = 0;
-            document.getElementById('amount-display').textContent = '0';
-            document.getElementById('duration').value = 1;
-            document.getElementById('duration-display').textContent = '1';
-            document.getElementById('activity-type').value = 'nft';
-            calculateRewards();
+            document.getElementById('collateral-amount').value = 0;
+            document.getElementById('collateral-amount-display').textContent = '0';
+            document.getElementById('loan-duration').value = 12;
+            document.getElementById('loan-duration-display').textContent = '12';
+            document.getElementById('interest-rate').value = 5;
+            document.getElementById('interest-rate-display').textContent = '5%';
+            document.getElementById('collateral-type').value = 'bitcoin';
+            updatePriceDisplay();
             nextStep(1);
         }
 
@@ -970,6 +1067,7 @@
             fetchLivePrices();
             setInterval(fetchLivePrices, 60000);
             document.getElementById('connect-metamask').addEventListener('click', connectMetaMask);
+            document.getElementById('collateral-type').addEventListener('change', updatePriceDisplay);
             document.querySelector('.back-to-top').addEventListener('click', (e) => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1002,7 +1100,6 @@
                     document.getElementById('subscribe-message').textContent = 'Erreur réseau.';
                 }
             });
-            calculateRewards(); // Initialisation
         });
     </script>
 </body>
