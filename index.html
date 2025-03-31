@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="description" content="Rejoignez l’écosystème Legatio Finance : explorez des NFTs uniques et gagnez des récompenses en $LEGS via staking et participation communautaire dès 100 $ sur Arbitrum.">
-    <meta name="keywords" content="NFTs uniques, $LEGS, staking, blockchain, Legatio Finance, finance décentralisée, utility token, récompenses communautaires">
+    <meta name="description" content="Explorez des NFTs uniques et gagnez des $LEGS via staking et participation active dès 100 $ avec Legatio Finance sur Arbitrum.">
+    <meta name="keywords" content="NFTs uniques, $LEGS, staking, blockchain, Legatio Finance, finance décentralisée, utility token, récompenses">
     <meta name="author" content="Legatio Finance Team">
     <meta property="og:title" content="Legatio Finance - NFTs Uniques & Récompenses $LEGS">
     <meta property="og:description" content="Participez à l’écosystème Legatio : gagnez des $LEGS en stakant ou en tenant des NFTs uniques dès 100 $ sur Arbitrum.">
@@ -27,7 +27,7 @@
       "name": "Legatio Finance",
       "url": "https://delmarcrypto.github.io/legatio.finance/",
       "logo": "https://delmarcrypto.github.io/legatio.finance/images/og-image.jpg",
-      "description": "Legatio Finance est une plateforme communautaire sur blockchain offrant des NFTs uniques et des récompenses en $LEGS via staking et participation active.",
+      "description": "Legatio Finance propose une plateforme sur blockchain pour explorer des NFTs uniques et gagner des $LEGS via staking et participation active.",
       "sameAs": [
         "https://x.com/rdb_legend",
         "https://discord.com/channels/1347668715357077577/1347668716120182888"
@@ -35,7 +35,426 @@
     }
     </script>
     <style>
-        /* Le CSS reste inchangé pour cet exemple */
+        /* CSS inchangé pour cet exemple */
+        :root {
+            --primary: #FF007A;
+            --background: #000000;
+            --text: #FFFFFF;
+            --button-bg: #1A1A1A;
+            --button-text: #FF007A;
+            --hover-dark: #FF4DA6;
+            --accent-pink: #FF66B2;
+            --glow: 0 0 10px #FF007A, 0 0 20px #FF007A, 0 0 30px #FF66B2;
+            --success: #28a745;
+            --warning: #dc3545;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat, linear-gradient(135deg, #000000 0%, #1A1A1A 100%);
+            color: var(--text);
+            position: relative;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 0, 122, 0.2) 0%, transparent 70%);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover,
+        .navbar a:focus {
+            color: var(--primary);
+            outline: none;
+        }
+
+        .navbar .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: var(--glow);
+            animation: glow 2s infinite;
+        }
+
+        .header {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: var(--glow);
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: var(--glow); }
+            50% { text-shadow: 0 0 5px #FF007A, 0 0 10px #FF66B2; }
+            100% { text-shadow: var(--glow); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            padding: 2rem 0;
+        }
+
+        .section h2 {
+            text-shadow: var(--glow);
+            animation: glow 2s infinite;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--button-bg);
+            color: var(--button-text);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover,
+        .cta-button:focus {
+            background: var(--hover-dark);
+            transform: scale(1.05);
+            box-shadow: var(--glow);
+            outline: none;
+        }
+
+        .simulator-cta {
+            background: var(--button-bg);
+            border: 2px solid var(--primary);
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+        }
+
+        .token-benefits-list,
+        .testimonials-container,
+        .roadmap-timeline,
+        .team-container,
+        .token-sale-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .token-benefit,
+        .testimonial,
+        .roadmap-item,
+        .team-member,
+        .token-sale-item {
+            background: #1A1A1A;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .token-benefit:hover,
+        .testimonial:hover,
+        .roadmap-item:hover,
+        .team-member:hover,
+        .token-sale-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 0, 122, 0.3);
+        }
+
+        .token-benefit i,
+        .why-choose i,
+        .how-to-invest i,
+        .services i {
+            font-size: 2.5rem;
+            color: var(--accent-pink);
+            margin-bottom: 0.5rem;
+        }
+
+        .roadmap-item {
+            text-align: left;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .before-after {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .before-after .before,
+        .before-after .after {
+            background: #3A3A3A;
+            padding: 1.5rem;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .before-after h3::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            color: var(--accent-pink);
+        }
+
+        .before-after .before h3::before {
+            content: "\f05e"; /* fa-ban */
+        }
+
+        .before-after .after h3::before {
+            content: "\f015"; /* fa-home */
+        }
+
+        .simulator-form {
+            background: #1A1A1A;
+            padding: 1.5rem;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        .simulator-form .step {
+            display: none;
+        }
+
+        .simulator-form .step.active {
+            display: block;
+        }
+
+        .simulator-form input,
+        .simulator-form select {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: #2A2A2A;
+            color: var(--text);
+        }
+
+        .simulator-form input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #2A2A2A;
+            border-radius: 5px;
+            outline: none;
+            margin: 0.5rem 0;
+        }
+
+        .simulator-form input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: var(--glow);
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar .step-indicator {
+            width: 30px;
+            height: 30px;
+            background: #2A2A2A;
+            color: var(--text);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar .step-indicator.active {
+            background: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .swap-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            background: #1A1A1A;
+            border-radius: 12px;
+        }
+
+        .swap-form input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: #2A2A2A;
+            color: var(--text);
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a {
+            color: var(--text);
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover,
+        .social-links a:focus {
+            color: var(--primary);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: #1A1A1A;
+            margin: 15% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 12px;
+            color: var(--text);
+        }
+
+        .partner-logos-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+            justify-items: center;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .partner-logo {
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+
+        .partner-logo:hover {
+            transform: scale(1.1);
+        }
+
+        .start-section p {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .token-sale-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .token-sale-item ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .partner-logos-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 1rem;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .navbar .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .token-benefits-list,
+            .testimonials-container,
+            .roadmap-timeline,
+            .team-container,
+            .token-sale-container {
+                grid-template-columns: 1fr;
+            }
+
+            .start-section p {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -47,7 +466,7 @@
             <ul>
                 <li><a href="#start">Accueil</a></li>
                 <li><a href="#how-to-participate">Participer</a></li>
-                <li><a href="#community">Communauté</a></li>
+                <li><a href="#ecosystem">Écosystème</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#team">Équipe</a></li>
             </ul>
@@ -58,15 +477,15 @@
         <section class="header" id="start">
             <div class="header-content">
                 <h1>Legatio Finance</h1>
-                <p class="catchphrase">Rejoignez une communauté blockchain pour explorer des NFTs uniques et gagner des récompenses en $LEGS.</p>
-                <a href="https://delmarcrypto.github.io/Formation-Legatio/" class="cta-button" target="_blank" rel="noopener noreferrer" aria-label="Plongez dans la Communauté Crypto">Plongez dans la Communauté Crypto</a>
+                <p class="catchphrase">Explorez des NFTs uniques et gagnez des $LEGS via blockchain.</p>
+                <a href="https://delmarcrypto.github.io/Formation-Legatio/" class="cta-button" target="_blank" rel="noopener noreferrer" aria-label="Plongez dans l’Écosystème Crypto">Plongez dans l’Écosystème Crypto</a>
             </div>
         </section>
 
         <div class="container">
             <section class="section start-section">
                 <h2>Bienvenue chez Legatio</h2>
-                <p>Une plateforme communautaire pour participer à un écosystème blockchain avec des NFTs uniques et des récompenses en $LEGS.</p>
+                <p>Une plateforme innovante pour explorer des NFTs uniques et obtenir des $LEGS via staking ou participation active.</p>
                 <a href="#simulateur-rewards" class="cta-button simulator-cta" aria-label="Essayer le simulateur">Essayer le Simulateur</a>
             </section>
 
@@ -76,17 +495,17 @@
                     <article class="token-benefit">
                         <i class="fas fa-coins"></i>
                         <h3>Staking</h3>
-                        <p>Stakez vos $LEGS pour gagner des récompenses communautaires.</p>
+                        <p>Stakez vos $LEGS pour des bonus variables.</p>
                     </article>
                     <article class="token-benefit">
                         <i class="fas fa-vote-yea"></i>
                         <h3>Gouvernance</h3>
-                        <p>Participez aux décisions de l’écosystème Legatio.</p>
+                        <p>Influencez l’avenir de l’écosystème Legatio.</p>
                     </article>
                     <article class="token-benefit">
                         <i class="fas fa-gift"></i>
                         <h3>Récompenses NFT</h3>
-                        <p>Tenez un LegatioNFT pour recevoir des bonus en $LEGS.</p>
+                        <p>Tenez un LegatioNFT pour des $LEGS supplémentaires.</p>
                     </article>
                 </div>
             </section>
@@ -114,8 +533,8 @@
             </section>
 
             <section class="section why-choose">
-                <h2>Pourquoi Participer avec Legatio ?</h2>
-                <p>Legatio Finance vous permet d’explorer des NFTs uniques et de gagner des récompenses en $LEGS grâce à une plateforme communautaire sur blockchain.</p>
+                <h2>Pourquoi Legatio ?</h2>
+                <p>Legatio Finance vous permet d’explorer des NFTs uniques et de gagner des $LEGS grâce à une plateforme blockchain accessible.</p>
                 <div class="token-benefits-list">
                     <article class="token-benefit">
                         <i class="fas fa-door-open"></i>
@@ -125,7 +544,7 @@
                     <article class="token-benefit">
                         <i class="fas fa-gift"></i>
                         <h3>Récompenses</h3>
-                        <p>Gagnez des $LEGS via staking et NFTs.</p>
+                        <p>Gagnez des $LEGS via staking ou NFTs.</p>
                     </article>
                     <article class="token-benefit">
                         <i class="fas fa-shield-alt"></i>
@@ -136,7 +555,7 @@
             </section>
 
             <section class="section how-to-participate" id="how-to-participate">
-                <h2>Comment Participer à l’Écosystème ?</h2>
+                <h2>Comment Participer ?</h2>
                 <div class="token-benefits-list">
                     <article class="token-benefit">
                         <i class="fas fa-wallet"></i>
@@ -145,20 +564,20 @@
                     </article>
                     <article class="token-benefit">
                         <i class="fas fa-shopping-cart"></i>
-                        <h3>2. Obtenez</h3>
-                        <p>Collectionnez des NFTs Legatio.</p>
+                        <h3>2. Collectionnez</h3>
+                        <p>Obtenez des NFTs Legatio.</p>
                     </article>
                     <article class="token-benefit">
                         <i class="fas fa-coins"></i>
                         <h3>3. Gagnez</h3>
-                        <p>Stakez $LEGS pour des bonus.</p>
+                        <p>Stakez $LEGS pour des récompenses.</p>
                     </article>
                 </div>
                 <a href="#simulateur-rewards" class="cta-button">Démarrez avec MetaMask</a>
             </section>
 
             <section class="section services">
-                <h2>Nos Fonctionnalités Communautaires</h2>
+                <h2>Nos Fonctionnalités</h2>
                 <div class="token-benefits-list">
                     <article class="token-benefit">
                         <i class="fas fa-gem"></i>
@@ -168,12 +587,12 @@
                     <article class="token-benefit">
                         <i class="fas fa-coins"></i>
                         <h3>Staking $LEGS</h3>
-                        <p>Récompenses communautaires variables.</p>
+                        <p>Bonus variables via staking.</p>
                     </article>
                     <article class="token-benefit">
                         <i class="fas fa-hand-holding-usd"></i>
                         <h3>Prêts Crypto</h3>
-                        <p>Accès via $LEGS et NFTs.</p>
+                        <p>Accès avec $LEGS et NFTs.</p>
                     </article>
                 </div>
             </section>
@@ -183,19 +602,19 @@
                 <div class="token-sale-container">
                     <article class="token-sale-item">
                         <h3>Token $LEGS</h3>
-                        <p><strong>$LEGS</strong> est le carburant de l’écosystème Legatio.</p>
+                        <p><strong>$LEGS</strong> alimente l’écosystème Legatio.</p>
                         <ul>
                             <li>Accédez à des prêts sécurisés.</li>
                             <li>Gagnez des rewards via staking.</li>
                             <li>Participez à la gouvernance.</li>
                         </ul>
                         <p><strong>Tokenomics :</strong> Total Supply : 1B $LEGS, 1 % burn par transfert.</p>
-                        <a href="#community" class="cta-button">Obtenir $LEGS</a>
+                        <a href="#ecosystem" class="cta-button">Obtenir $LEGS</a>
                     </article>
                     <article class="token-sale-item">
                         <h3>NFTs Legatio</h3>
                         <p><strong>"Legatio Genesis"</strong> : 10 000 NFTs uniques sur Arbitrum.</p>
-                        <p>Prix : Dès 0.05 ETH | Bonus : $LEGS communautaires.</p>
+                        <p>Prix : Dès 0.05 ETH | Bonus : $LEGS supplémentaires.</p>
                         <a href="#opportunites" class="cta-button">Explorer les NFTs</a>
                     </article>
                 </div>
@@ -230,7 +649,7 @@
                         <p style="font-style: italic; color: #AAAAAA;">- Jean, Membre</p>
                     </article>
                     <article class="testimonial">
-                        <p>"Les rewards de staking $LEGS sont un super bonus."</p>
+                        <p>"Les bonus de staking $LEGS sont un vrai plus."</p>
                         <p style="font-style: italic; color: #AAAAAA;">- Marie, Nouvelle Venue</p>
                     </article>
                 </div>
@@ -245,7 +664,7 @@
                     </article>
                     <article class="roadmap-item">
                         <h3>Q2 2025</h3>
-                        <p>Staking $LEGS et prêts communautaires.</p>
+                        <p>Staking $LEGS et prêts accessibles.</p>
                     </article>
                     <article class="roadmap-item">
                         <h3>Q3 2025</h3>
@@ -278,7 +697,15 @@
             <section class="section partner-logos">
                 <h2>Nos Partenaires</h2>
                 <div class="partner-logos-grid">
-                    <!-- Les SVG des partenaires restent inchangés -->
+                    <!-- Partenaires SVG inchangés -->
+                    <a href="https://www.lbank.com/" target="_blank" rel="noopener noreferrer" aria-label="Logo LBank">
+                        <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
+                            <rect x="5" y="5" width="110" height="40" rx="10" fill="none" stroke="url(#lbankGradient)" stroke-width="2"/>
+                            <text x="15" y="35" font-family="Orbitron, sans-serif" font-size="20" fill="url(#lbankGradient)">LBank</text>
+                            <circle cx="100" cy="25" r="5" fill="var(--primary)"/>
+                        </svg>
+                    </a>
+                    <!-- Autres logos inchangés pour brièveté -->
                 </div>
             </section>
 
@@ -306,7 +733,7 @@
                         <label for="activity-type">Activité :</label>
                         <select id="activity-type" aria-label="Type d’activité">
                             <option value="staking">$LEGS Staking</option>
-                            <option value="nft">Tenir un NFT</option>
+                            <option value="nft" selected>Tenir un NFT</option>
                         </select>
                         <button type="button" class="cta-button" onclick="nextStep(2)">Suivant</button>
                     </div>
@@ -336,7 +763,7 @@
 
             <section class="section about">
                 <h2>À Propos de Legatio Finance</h2>
-                <p>Legatio Finance est une plateforme communautaire sur blockchain pour explorer des NFTs uniques et gagner des $LEGS via staking et participation active.</p>
+                <p>Legatio Finance est une plateforme blockchain pour collectionner des NFTs uniques et gagner des $LEGS grâce à une participation active.</p>
             </section>
 
             <section class="section faq" id="faq">
@@ -348,7 +775,7 @@
                     </article>
                     <article class="token-benefit">
                         <h3>Quels sont les risques ?</h3>
-                        <p>Les rewards dépendent de la communauté ; audits CertiK assurent la sécurité.</p>
+                        <p>Les bonus varient selon l’activité ; audits CertiK assurent la sécurité.</p>
                     </article>
                     <article class="token-benefit">
                         <h3>Comment récupérer mes $LEGS ?</h3>
@@ -362,9 +789,9 @@
                 <p><a href="#faq">Qu’est-ce qu’un NFT Legatio ?</a> | <a href="#how-to-participate">Comment rejoindre Legatio ?</a></p>
             </section>
 
-            <section class="section community" id="community">
-                <h2>Pour la Communauté</h2>
-                <p>Participez à notre vision communautaire sur Arbitrum.</p>
+            <section class="section ecosystem" id="ecosystem">
+                <h2>Pour l’Écosystème</h2>
+                <p>Participez à notre vision collective sur Arbitrum.</p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
                     <a href="https://delmarcrypto.github.io/Pitch-Deck/" class="cta-button" target="_blank" rel="noopener noreferrer">Pitch Deck</a>
                     <a href="https://delmarcrypto.github.io/White-Paper/" class="cta-button" target="_blank" rel="noopener noreferrer">White Paper</a>
@@ -373,8 +800,8 @@
             </section>
 
             <section class="section stay-informed">
-                <h2>Restez Connecté</h2>
-                <p>Inscrivez-vous pour des mises à jour communautaires.</p>
+                <h2>Restez Informé</h2>
+                <p>Inscrivez-vous pour des mises à jour exclusives.</p>
                 <form id="subscribe-form" action="https://formspree.io/f/mpwpavjj" method="POST">
                     <input type="email" name="email" placeholder="Votre email" required aria-label="Email pour inscription">
                     <button type="submit" class="cta-button">S’inscrire</button>
@@ -402,7 +829,7 @@
         <div class="modal-content">
             <span class="close-modal" id="close-demo-modal">×</span>
             <h2>Demander une Démo</h2>
-            <p>Remplissez le formulaire pour explorer notre écosystème.</p>
+            <p>Remplissez le formulaire pour découvrir notre écosystème.</p>
             <div id="form-message" class="hidden"></div>
             <form id="demo-form" action="https://formspree.io/f/mpwpavjj" method="POST">
                 <label for="name">Nom :</label>
@@ -421,7 +848,7 @@
     <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js" defer></script>
     <script>
         const contractAddress = "0x1234abcd..."; // À remplacer
-        const contractABI = [ /* ABI inchangé */ ];
+        const contractABI = [ /* ABI simplifié pour cet exemple */ ];
 
         let provider, signer, contract, userAddress;
         let livePrices = { bitcoin: 0, 'pax-gold': 0, 'silver-token-xagx': 0 };
@@ -525,7 +952,7 @@
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.step-indicator').forEach(s => s.classList.remove('active'));
             document.getElementById(`step-${step}`).classList.add('active');
-            document.getElementById(`step-${step}-indicator`).classList.add('active');
+            document.getElementById(`step-${step}-indicator').classList.add('active');
             if (step === 3) calculateRewards();
         }
 
@@ -534,7 +961,7 @@
             document.getElementById('amount-display').textContent = '0';
             document.getElementById('duration').value = 1;
             document.getElementById('duration-display').textContent = '1';
-            document.getElementById('activity-type').value = 'staking';
+            document.getElementById('activity-type').value = 'nft';
             calculateRewards();
             nextStep(1);
         }
@@ -575,6 +1002,7 @@
                     document.getElementById('subscribe-message').textContent = 'Erreur réseau.';
                 }
             });
+            calculateRewards(); // Initialisation
         });
     </script>
 </body>
