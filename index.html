@@ -915,230 +915,226 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js" defer></script>
     <script>
-        const contractAddress = "0x1234abcd..."; // Remplacez par l’adresse réelle
-        const contractABI = [
-            {
-                "inputs": [{"internalType": "address", "name": "_jetonCollatéral", "type": "address"}, {"internalType": "uint256", "name": "_montantCollatéral", "type": "uint256"}, {"internalType": "uint256", "name": "_montant", "type": "uint256"}],
-                "name": "ouvrirPret",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [{"internalType": "address", "name": "_utilisateur", "type": "address"}],
-                "name": "ajouterUtilisateurKYC",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [{"internalType": "address", "name": "", "type": "address"}],
-                "name": "utilisateursKYC",
-                "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-                "stateMutability": "view",
-                "type": "function"
-            }
-        ];
+       <script>
+    const contractAddress = "0x1234abcd..."; // Remplacez par l’adresse réelle
+    const contractABI = [ /* ABI simplifié, à compléter */ ];
 
-        let provider, signer, contract, userAddress;
-        let livePrices = { bitcoin: 0, 'pax-gold': 0, 'silver-token-xagx': 0, immobilier: 1000 };
-        let chart;
+    let provider, signer, contract, userAddress;
+    let livePrices = { bitcoin: 0, 'pax-gold': 0, 'silver-token-xagx': 0 };
+    let chart;
 
-        async function fetchLivePrices() {
-            try {
-                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,pax-gold,silver-token-xagx&vs_currencies=usd');
-                if (!res.ok) throw new Error('Erreur API');
-                const data = await res.json();
-                livePrices.bitcoin = data.bitcoin?.usd || 0;
-                livePrices['pax-gold'] = data['pax-gold']?.usd || 0;
-                livePrices['silver-token-xagx'] = data['silver-token-xagx']?.usd || 0;
-                updatePriceDisplay();
-            } catch (e) {
-                console.error('Erreur fetchLivePrices:', e);
-                document.getElementById('btcPrice').textContent = 'Bitcoin: Indisponible';
-                document.getElementById('goldPrice').textContent = 'Or: Indisponible';
-                document.getElementById('silverPrice').textContent = 'Argent: Indisponible';
-            }
-        }
-
-        function updatePriceDisplay() {
-            document.getElementById('btcPrice').textContent = `Bitcoin: $${livePrices.bitcoin.toLocaleString('fr-FR')}`;
-            document.getElementById('goldPrice').textContent = `Or: $${livePrices['pax-gold'].toLocaleString('fr-FR')} / oz`;
-            document.getElementById('silverPrice').textContent = `Argent: $${livePrices['silver-token-xagx'].toLocaleString('fr-FR')} / oz`;
-            document.getElementById('collateral-price').textContent = `$${livePrices[document.getElementById('collateral-type').value].toLocaleString('fr-FR')}`;
-            calculateLoan();
-        }
-
-        function updateCollateralValue(value) {
-            document.getElementById('collateral-amount-display').textContent = value;
-            calculateLoan();
-        }
-
-        function updateLoanDuration(value) {
-            document.getElementById('loan-duration-display').textContent = value;
-            calculateLoan();
-        }
-
-        function updateInterestRate(value) {
-            document.getElementById('interest-rate-display').textContent = `${value}%`;
-            calculateLoan();
-        }
-
-        function calculateLoan() {
-            const type = document.getElementById('collateral-type').value;
-            const amount = parseFloat(document.getElementById('collateral-amount').value) || 0;
-            const duration = parseFloat(document.getElementById('loan-duration').value) || 0;
-            const rate = parseFloat(document.getElementById('interest-rate').value) || 0;
-
-            if (!amount || !duration || !rate) {
-                document.getElementById('error-message').textContent = 'Veuillez remplir tous les champs.';
-                return;
-            }
-
-            const value = amount * livePrices[type];
-            const ltv = 0.7;
-            const loan = value * ltv;
-            const monthlyRate = rate / 100 / 12;
-            const payment = (loan * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
-            const total = payment * duration;
-            const interest = total - loan;
-
-            const ltvElement = document.getElementById('ltv-value');
-            ltvElement.textContent = `${(ltv * 100)}%`;
-            ltvElement.classList.remove('success', 'warning');
-            ltvElement.classList.add(ltv * 100 <= 70 ? 'success' : 'warning');
-
-            document.getElementById('loan-amount').textContent = `$${loan.toLocaleString('fr-FR')}`;
-            document.getElementById('monthly-payment').textContent = `$${payment.toLocaleString('fr-FR')}`;
-            document.getElementById('total-interest').textContent = `$${interest.toLocaleString('fr-FR')}`;
-            document.getElementById('total-amount').textContent = `$${total.toLocaleString('fr-FR')}`;
-
-            if (chart) chart.destroy();
-            const ctx = document.getElementById('loan-chart').getContext('2d');
-            chart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Capital', 'Intérêts'],
-                    datasets: [{
-                        data: [loan, interest],
-                        backgroundColor: ['#FF007A', '#FF66B2'],
-                        borderColor: ['#1A1A1A', '#1A1A1A'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: { legend: { position: 'top', labels: { color: '#FFFFFF' } } }
-                }
-            });
-        }
-
-        async function connectMetaMask() {
-            if (!window.ethereum) {
-                document.getElementById('error-message').textContent = 'MetaMask requis.';
-                return;
-            }
-            try {
-                document.getElementById('loading-spinner').classList.remove('hidden');
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                userAddress = accounts[0];
-                document.getElementById('wallet-address').classList.remove('hidden');
-                document.getElementById('wallet-address').textContent = `Adresse: ${userAddress.slice(0, 6)}...${userAddress.slice(-4)}`;
-                provider = new ethers.providers.Web3Provider(window.ethereum);
-                signer = provider.getSigner();
-                contract = new ethers.Contract(contractAddress, contractABI, signer);
-                if (await window.ethereum.request({ method: 'eth_chainId' }) !== '0xa4b1') {
-                    await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0xa4b1' }] });
-                }
-                const isKYC = await contract.utilisateursKYC(userAddress);
-                if (!isKYC) document.getElementById('error-message').textContent = 'KYC requis.';
-                else {
-                    document.getElementById('connect-metamask').textContent = 'Connecté';
-                    document.getElementById('error-message').textContent = '';
-                }
-            } catch (e) {
-                document.getElementById('error-message').textContent = e.message || 'Erreur de connexion.';
-            } finally {
-                document.getElementById('loading-spinner').classList.add('hidden');
-            }
-        }
-
-        async function requestLoan() {
-            if (!contract) {
-                alert('Connectez MetaMask d’abord !');
-                return;
-            }
-            try {
-                const type = document.getElementById('collateral-type').value;
-                const amount = ethers.utils.parseUnits(document.getElementById('collateral-amount').value, 18);
-                const loan = ethers.utils.parseUnits(document.getElementById('loan-amount').textContent.replace('$', '').replace(/,/g, ''), 6);
-                const collateralMap = { bitcoin: "0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f", 'pax-gold': "0x...", 'silver-token-xagx': "0x...", immobilier: "0x..." };
-                const tx = await contract.ouvrirPret(collateralMap[type], amount, loan);
-                await tx.wait();
-                document.getElementById('error-message').textContent = 'Prêt demandé avec succès !';
-            } catch (e) {
-                document.getElementById('error-message').textContent = e.message || 'Erreur lors de la demande.';
-            }
-        }
-
-        function nextStep(step) {
-            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.step-indicator').forEach(s => s.classList.remove('active'));
-            document.getElementById(`step-${step}`).classList.add('active');
-            document.getElementById(`step-${step}-indicator`).classList.add('active');
-            if (step === 3) calculateLoan();
-        }
-
-        function resetSimulator() {
-            document.getElementById('collateral-amount').value = 0;
-            document.getElementById('collateral-amount-display').textContent = '0';
-            document.getElementById('loan-duration').value = 12;
-            document.getElementById('loan-duration-display').textContent = '12';
-            document.getElementById('interest-rate').value = 5;
-            document.getElementById('interest-rate-display').textContent = '5%';
-            document.getElementById('collateral-type').value = 'bitcoin';
+    async function fetchLivePrices() {
+        try {
+            const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,pax-gold,silver-token-xagx&vs_currencies=usd');
+            if (!res.ok) throw new Error('Erreur API');
+            const data = await res.json();
+            livePrices.bitcoin = data.bitcoin?.usd || 0;
+            livePrices['pax-gold'] = data['pax-gold']?.usd || 0;
+            livePrices['silver-token-xagx'] = data['silver-token-xagx']?.usd || 0;
             updatePriceDisplay();
-            nextStep(1);
+        } catch (e) {
+            console.error('Erreur fetchLivePrices:', e);
+            document.getElementById('btcPrice').textContent = 'Bitcoin: Indisponible';
+            document.getElementById('goldPrice').textContent = 'Or: Indisponible';
+            document.getElementById('silverPrice').textContent = 'Argent: Indisponible';
+        }
+    }
+
+    function updatePriceDisplay() {
+        document.getElementById('btcPrice').textContent = `Bitcoin: $${livePrices.bitcoin.toLocaleString('fr-FR')}`;
+        document.getElementById('goldPrice').textContent = `Or: $${livePrices['pax-gold'].toLocaleString('fr-FR')} / oz`;
+        document.getElementById('silverPrice').textContent = `Argent: $${livePrices['silver-token-xagx'].toLocaleString('fr-FR')} / oz`;
+    }
+
+    function updateNFTCount(value) {
+        document.getElementById('nft-count-display').textContent = value;
+        calculateResults();
+    }
+
+    function updateNFTDuration(value) {
+        document.getElementById('nft-duration-display').textContent = value;
+        calculateResults();
+    }
+
+    function updateStakeAmount(value) {
+        document.getElementById('stake-amount-display').textContent = value;
+        calculateResults();
+    }
+
+    function updateStakeDuration(value) {
+        document.getElementById('stake-duration-display').textContent = value;
+        calculateResults();
+    }
+
+    function updateLoanAmount(value) {
+        document.getElementById('loan-amount-display').textContent = value;
+        calculateResults();
+    }
+
+    function updateLoanDuration(value) {
+        document.getElementById('loan-duration-display').textContent = value;
+        calculateResults();
+    }
+
+    function calculateResults() {
+        const type = document.getElementById('activity-type').value;
+        let result = 0, label1, label2, data1, data2;
+
+        if (type === 'nft') {
+            const count = parseFloat(document.getElementById('nft-count').value) || 0;
+            const duration = parseFloat(document.getElementById('nft-duration').value) || 0;
+            result = count * 10 * duration; // 10 $LEGS par NFT par mois
+            label1 = 'Investissement Initial';
+            label2 = 'Récompenses';
+            data1 = count * 100; // 100 $ par NFT
+            data2 = result;
+        } else if (type === 'staking') {
+            const amount = parseFloat(document.getElementById('stake-amount').value) || 0;
+            const duration = parseFloat(document.getElementById('stake-duration').value) || 0;
+            result = amount * 0.05 * (duration / 12); // 5% annuel
+            label1 = 'Montant Staké';
+            label2 = 'Récompenses';
+            data1 = amount;
+            data2 = result;
+        } else if (type === 'loan') {
+            const collateral = document.getElementById('loan-collateral').value;
+            const amount = parseFloat(document.getElementById('loan-amount').value) || 0;
+            const duration = parseFloat(document.getElementById('loan-duration').value) || 0;
+            const rate = 0.05; // 5% annuel fixe pour simplifier
+            const monthlyRate = rate / 12;
+            const payment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -duration));
+            const total = payment * duration;
+            result = total - amount; // Intérêts totaux
+            label1 = 'Capital Prêté';
+            label2 = 'Intérêts';
+            data1 = amount;
+            data2 = result;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchLivePrices();
-            setInterval(fetchLivePrices, 60000);
-            document.getElementById('connect-metamask').addEventListener('click', connectMetaMask);
-            document.getElementById('collateral-type').addEventListener('change', updatePriceDisplay);
-            document.querySelector('.back-to-top').addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-            const modal = document.getElementById('demo-modal');
-            document.getElementById('open-demo-modal').addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.style.display = 'block';
-            });
-            document.getElementById('close-demo-modal').addEventListener('click', () => modal.style.display = 'none');
-            document.getElementById('demo-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(e.target);
-                try {
-                    const res = await fetch(e.target.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
-                    document.getElementById('form-message').classList.remove('hidden');
-                    document.getElementById('form-message').textContent = res.ok ? 'Merci ! Nous vous contacterons.' : 'Erreur lors de l’envoi.';
-                } catch (e) {
-                    document.getElementById('form-message').textContent = 'Erreur réseau.';
-                }
-            });
-            document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const formData = new FormData(e.target);
-                try {
-                    const res = await fetch(e.target.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
-                    document.getElementById('subscribe-message').classList.remove('hidden');
-                    document.getElementById('subscribe-message').textContent = res.ok ? 'Inscription réussie !' : 'Erreur lors de l’inscription.';
-                } catch (e) {
-                    document.getElementById('subscribe-message').textContent = 'Erreur réseau.';
-                }
-            });
+        document.getElementById('result-amount').textContent = `${result.toLocaleString('fr-FR')} $LEGS`;
+
+        if (chart) chart.destroy();
+        const ctx = document.getElementById('result-chart').getContext('2d');
+        chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [label1, label2],
+                datasets: [{
+                    data: [data1, data2],
+                    backgroundColor: ['#FF007A', '#FF66B2'],
+                    borderColor: ['#1A1A1A', '#1A1A1A'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'top', labels: { color: '#FFFFFF' } } }
+            }
         });
-    </script>
-</body>
-</html>
+    }
+
+    async function connectMetaMask() {
+        if (!window.ethereum) {
+            document.getElementById('error-message').textContent = 'MetaMask requis.';
+            return;
+        }
+        try {
+            document.getElementById('loading-spinner').classList.remove('hidden');
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            userAddress = accounts[0];
+            document.getElementById('wallet-address').classList.remove('hidden');
+            document.getElementById('wallet-address').textContent = `Adresse: ${userAddress.slice(0, 6)}...${userAddress.slice(-4)}`;
+            provider = new ethers.providers.Web3Provider(window.ethereum);
+            signer = provider.getSigner();
+            contract = new ethers.Contract(contractAddress, contractABI, signer);
+            if (await window.ethereum.request({ method: 'eth_chainId' }) !== '0xa4b1') {
+                await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0xa4b1' }] });
+            }
+            document.getElementById('connect-metamask').textContent = 'Connecté';
+            document.getElementById('error-message').textContent = '';
+        } catch (e) {
+            document.getElementById('error-message').textContent = e.message || 'Erreur de connexion.';
+        } finally {
+            document.getElementById('loading-spinner').classList.add('hidden');
+        }
+    }
+
+    async function engageNow() {
+        alert('Rejoignez-nous sur Telegram ou Discord pour participer !');
+    }
+
+    function nextStep(step) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.step-indicator').forEach(s => s.classList.remove('active'));
+        document.getElementById(`step-${step}`).classList.add('active');
+        document.getElementById(`step-${step}-indicator').classList.add('active');
+        if (step === 2) updateActivityOptions();
+        if (step === 3) calculateResults();
+    }
+
+    function updateActivityOptions() {
+        const type = document.getElementById('activity-type').value;
+        document.querySelectorAll('.activity-options').forEach(opt => opt.classList.add('hidden'));
+        document.getElementById(`${type}-options`).classList.remove('hidden');
+    }
+
+    function resetSimulator() {
+        document.getElementById('nft-count').value = 1;
+        document.getElementById('nft-count-display').textContent = '1';
+        document.getElementById('nft-duration').value = 1;
+        document.getElementById('nft-duration-display').textContent = '1';
+        document.getElementById('stake-amount').value = 100;
+        document.getElementById('stake-amount-display').textContent = '100';
+        document.getElementById('stake-duration').value = 1;
+        document.getElementById('stake-duration-display').textContent = '1';
+        document.getElementById('loan-amount').value = 100;
+        document.getElementById('loan-amount-display').textContent = '100';
+        document.getElementById('loan-duration').value = 12;
+        document.getElementById('loan-duration-display').textContent = '12';
+        document.getElementById('activity-type').value = 'nft';
+        updateActivityOptions();
+        calculateResults();
+        nextStep(1);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchLivePrices();
+        setInterval(fetchLivePrices, 60000);
+        document.getElementById('connect-metamask').addEventListener('click', connectMetaMask);
+        document.getElementById('activity-type').addEventListener('change', updateActivityOptions);
+        document.querySelector('.back-to-top').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        const modal = document.getElementById('demo-modal');
+        document.getElementById('open-demo-modal').addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'block';
+        });
+        document.getElementById('close-demo-modal').addEventListener('click', () => modal.style.display = 'none');
+        document.getElementById('demo-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            try {
+                const res = await fetch(e.target.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+                document.getElementById('form-message').classList.remove('hidden');
+                document.getElementById('form-message').textContent = res.ok ? 'Merci ! Nous vous contacterons.' : 'Erreur lors de l’envoi.';
+            } catch (e) {
+                document.getElementById('form-message').textContent = 'Erreur réseau.';
+            }
+        });
+        document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            try {
+                const res = await fetch(e.target.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+                document.getElementById('subscribe-message').classList.remove('hidden');
+                document.getElementById('subscribe-message').textContent = res.ok ? 'Inscription réussie !' : 'Erreur lors de l’inscription.';
+            } catch (e) {
+                document.getElementById('subscribe-message').textContent = 'Erreur réseau.';
+            }
+        });
+        updateActivityOptions();
+        calculateResults();
+    });
+</script>
