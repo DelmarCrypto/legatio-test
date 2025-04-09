@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="description" content="Investissez dans l’immobilier tokenisé et les RWA dès 100$ avec Legatio Finance. Rendements passifs via NFTs et staking en 2025.">
+    <meta name="keywords" content="immobilier tokenisé, RWA, NFTs immobiliers, staking LEG, prêts crypto, blockchain, Legatio Finance, finance décentralisée">
+    <meta name="author" content="Legatio Finance Team">
+    <meta property="og:title" content="Legatio Finance - Immobilier Tokenisé dès 100$">
+    <meta property="og:description" content="Investissez dans l’immobilier tokenisé avec des rendements passifs via NFTs et staking sur Legatio Finance.">
+    <meta property="og:image" content="https://delmarcrypto.github.io/legatio.finance/images/og-image.jpg">
+    <meta property="og:url" content="https://delmarcrypto.github.io/legatio.finance/">
+    <meta property="og:type" content="website">
+    <title>Legatio Finance - Immobilier Tokenisé & RWA dès 100$</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="main.css">
+    <!-- Données structurées (Schema Markup) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Legatio Finance",
+      "url": "https://delmarcrypto.github.io/legatio.finance/",
+      "logo": "https://delmarcrypto.github.io/legatio.finance/images/og-image.jpg",
+      "description": "Legatio Finance propose des solutions d'investissement dans l'immobilier tokenisé via la blockchain, avec des services DeFi comme le staking et les prêts sécurisés.",
+      "sameAs": [
+        "https://x.com/rdb_legend",
+        "https://discord.com/channels/1347668715357077577/1347668716120182888"
+      ]
+    }
+    </script>
+    <style>
+        :root {
+            --primary: #FF007A;
+            --background: #000000;
+            --text: #FFFFFF;
+            --button-bg: #1A1A1A;
+            --button-text: #FF007A;
+            --hover-dark: #FF4DA6;
+            --accent-pink: #FF66B2;
+            --glow: 0 0 10px #FF007A, 0 0 20px #FF007A, 0 0 30px #FF66B2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat, linear-gradient(135deg, #000000 0%, #1A1A1A 100%);
+            color: var(--text);
+            position: relative;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 0, 122, 0.2) 0%, transparent 70%);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover,
+        .navbar a:focus {
+            color: var(--primary);
+            outline: none;
+        }
+
+        .navbar .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: var(--glow);
+            animation: glow 2s infinite;
+        }
+
+        .header {
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: var(--glow);
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: var(--glow); }
+            50% { text-shadow: 0 0 5px #FF007A, 0 0 10px #FF66B2; }
+            100% { text-shadow: var(--glow); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            padding: 2rem 0;
+        }
+
+        .section h2 {
+            text-shadow: var(--glow);
+            animation: glow 2s infinite;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--button-bg);
+            color: var(--button-text);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover,
+        .cta-button:focus {
+            background: var(--hover-dark);
+            transform: scale(1.05);
+            box-shadow: var(--glow);
+            outline: none;
+        }
+
+        .simulator-cta {
+            background: var(--button-bg);
+            border: 2px solid var(--primary);
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+        }
+
+        .token-benefits-list,
+        .roadmap-timeline,
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .token-benefit,
+        .roadmap-item,
+        .team-member {
+            background: #1A1A1A;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .token-benefit:hover,
+        .roadmap-item:hover,
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 0, 122, 0.3);
+        }
+
+        .token-benefit i,
+        .how-to-invest i {
+            font-size: 2.5rem;
+            color: var(--accent-pink);
+            margin-bottom: 0.5rem;
+        }
+
+        .roadmap-item {
+            text-align: left;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 12px 12px 0;
+        }
+
+        .presale-container {
+            background: #1A1A1A;
+            padding: 1.5rem;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 1rem auto;
+            text-align: center;
+        }
+
+        .presale-info {
+            margin-bottom: 1.5rem;
+        }
+
+        .presale-info h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .presale-info p {
+            margin: 0.3rem 0;
+        }
+
+        #presale-progress,
+        #total-progress {
+            width: 100%;
+            height: 10px;
+            margin-top: 0.5rem;
+            background: #2A2A2A;
+            border-radius: 5px;
+        }
+
+        #presale-progress::-webkit-progress-bar,
+        #total-progress::-webkit-progress-bar {
+            background: #2A2A2A;
+            border-radius: 5px;
+        }
+
+        #presale-progress::-webkit-progress-value {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        #total-progress::-webkit-progress-value {
+            background: var(--accent-pink);
+            border-radius: 5px;
+        }
+
+        .presale-form input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: #2A2A2A;
+            color: var(--text);
+        }
+
+        .presale-form p {
+            margin: 0.5rem 0;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a {
+            color: var(--text);
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover,
+        .social-links a:focus {
+            color: var(--primary);
+        }
+
+        .start-section p {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .navbar .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .token-benefits-list,
+            .roadmap-timeline,
+            .team-container {
+                grid-template-columns: 1fr;
+            }
+
+            .start-section p {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <nav class="container" role="navigation" aria-label="Menu principal">
+            <a href="#start" class="logo-link" aria-label="Retour à l'accueil">
+                <span class="logo-text">Legatio Finance</span>
+            </a>
+            <ul>
+                <li><a href="#start">Accueil</a></li>
+                <li><a href="#how-to-invest">Solutions</a></li>
+                <li><a href="#nfts">NFTs</a></li>
+                <li><a href="#presale-leg">Pré-vente</a></li>
+                <li><a href="#investors">Investisseurs</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#team">Équipe</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="header" id="start">
+            <div class="header-content">
+                <h1>Legatio Finance</h1>
+                <p class="catchphrase">Une plateforme innovante pour explorer des NFTs uniques et obtenir des $LEGS via staking.</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="section start-section">
+                <h2>Bienvenue dans notre écosystème</h2>
+                <p>Avant d’investir dans nos NFTs et le token $LEG, formez-vous pour mieux comprendre la blockchain et maximiser vos opportunités.</p>
+                <a href="https://delmarcrypto.github.io/Formation-Legatio/" class="cta-button simulator-cta" target="_blank" rel="noopener noreferrer" aria-label="Découvrez notre formation">Voir Notre Formation</a>
+            </section>
+
+            <section class="section token-benefits">
+                <h2>Découvrez l'utilité du token $LEG</h2>
+                <div class="token-benefits-list">
+                    <article class="token-benefit">
+                        <i class="fas fa-coins"></i>
+                        <h3>Staking</h3>
+                        <p>Stakez vos $LEGS pour des bonus variables.</p>
+                    </article>
+                    <article class="token-benefit">
+                        <i class="fas fa-vote-yea"></i>
+                        <h3>Gouvernance</h3>
+                        <p>Influencez l’avenir de l’écosystème Legatio.</p>
+                    </article>
+                    <article class="token-benefit">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <h3>Bonus</h3>
+                        <p>Tenez un LegatioNFT et recevez des $LEGS.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section how-to-invest" id="how-to-invest">
+                <h2>Comment Participer ?</h2>
+                <div class="token-benefits-list">
+                    <article class="token-benefit">
+                        <i class="fas fa-wallet"></i>
+                        <h3>1. Connectez</h3>
+                        <p>Utilisez MetaMask sur Arbitrum.</p>
+                    </article>
+                    <article class="token-benefit">
+                        <i class="fas fa-building"></i>
+                        <h3>2. Collectionnez</h3>
+                        <p>Obtenez des NFTs Legatio.</p>
+                    </article>
+                    <article class="token-benefit">
+                        <i class="fas fa-coins"></i>
+                        <h3>3. Gagnez</h3>
+                        <p>Stakez $LEGS pour des récompenses.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section nfts" id="nfts">
+                <h2>Explorez les NFTs "Legatio Genesis"</h2>
+                <p>Collectionnez des NFTs uniques et obtenez des avantages exclusifs dans l’écosystème Legatio.</p>
+                <div class="token-benefits-list">
+                    <article class="token-benefit">
+                        <img src="https://delmarcrypto.github.io/legatio-exchange/Citizen.jpeg" alt="Citizen NFT" style="width: 100%; height: auto; border-radius: 5px;">
+                        <h3>Citizen (0.05 ETH)</h3>
+                        <p>Chevalier Initié</p>
+                        <button class="cta-button mint-button" onclick="mintNFT('mintTier1', '0.05')">Mint Citizen</button>
+                    </article>
+                    <article class="token-benefit">
+                        <img src="https://delmarcrypto.github.io/legatio-exchange/Elite.jpeg" alt="Elite NFT" style="width: 100%; height: auto; border-radius: 5px;">
+                        <h3>Elite (0.5 ETH)</h3>
+                        <p>Chevalier Sentinelle</p>
+                        <button class="cta-button mint-button" onclick="mintNFT('mintTier2', '0.5')">Mint Elite</button>
+                    </article>
+                    <article class="token-benefit">
+                        <img src="https://delmarcrypto.github.io/legatio-exchange/Prime.jpeg" alt="Prime NFT" style="width: 100%; height: auto; border-radius: 5px;">
+                        <h3>Prime (5 ETH)</h3>
+                        <p>Chevalier Forgeur</p>
+                        <button class="cta-button mint-button" onclick="mintNFT('mintTier3', '5')">Mint Prime</button>
+                    </article>
+                    <article class="token-benefit">
+                        <img src="https://delmarcrypto.github.io/legatio-exchange/Legend.jpeg" alt="Legend NFT" style="width: 100%; height: auto; border-radius: 5px;">
+                        <h3>Legend (50 ETH)</h3>
+                        <p>Chevalier Paladin</p>
+                        <button class="cta-button mint-button" onclick="mintNFT('mintTier4', '50')">Mint Legend</button>
+                    </article>
+                    <article class="token-benefit">
+                        <img src="https://delmarcrypto.github.io/legatio-exchange/Genesis%20Sovereign.jpeg" alt="Genesis Sovereign NFT" style="width: 100%; height: auto; border-radius: 5px;">
+                        <h3>Genesis Sovereign (500 ETH)</h3>
+                        <p>Chevalier Monarque</p>
+                        <button class="cta-button mint-button" onclick="mintNFT('mintTier5', '500')">Mint Genesis Sovereign</button>
+                    </article>
+                </div>
+                <div id="mint-message" class="mint-message"></div>
+            </section>
+
+            <section class="section presale" id="presale-leg">
+                <h2>Réservez vos $LEGS en Pré-vente</h2>
+                <p>Participez dès maintenant et bénéficiez de prix avantageux avant le lancement officiel ! Objectif final : 5M $ à la fin de la phase Seed.</p>
+                <div class="presale-container">
+                    <div class="presale-info">
+                        <h3>Phase Actuelle : <span id="current-phase">Pre-Seed</span></h3>
+                        <p>Prix actuel : <span id="current-price">0.01 $</span> par $LEG</p>
+                        <p>Montant levé dans cette phase : <span id="amount-raised">0 $</span> / <span id="current-goal">1 000 000 $</span></p>
+                        <p>Total levé : <span id="total-raised">0 $</span> / 5 000 000 $</p>
+                        <progress id="presale-progress" value="0" max="100"></progress>
+                        <progress id="total-progress" value="0" max="100"></progress>
+                    </div>
+                    <div class="presale-form">
+                        <label for="leg-amount">Quantité de $LEGS à acheter :</label>
+                        <input type="number" id="leg-amount" min="1" placeholder="Entrez la quantité" required>
+                        <p>Montant total : <span id="total-cost">0 $</span></p>
+                        <button type="button" class="cta-button" onclick="buyLegTokens()">Acheter $LEGS</button>
+                        <p id="presale-message" class="hidden"></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section roadmap">
+                <h2>Roadmap 2025</h2>
+                <div class="roadmap-timeline">
+                    <article class="roadmap-item">
+                        <h3>Q1 2025</h3>
+                        <p>Lancement du token $LEGS et des premiers NFTs "Legatio Genesis" comme objets de collection uniques.</p>
+                    </article>
+                    <article class="roadmap-item">
+                        <h3>Q2 2025</h3>
+                        <p>Activation du staking de $LEGS pour des récompenses basées sur la participation.</p>
+                        <p>Ouverture des prêts décentralisés utilisant $LEGS ou NFTs comme collatéral.</p>
+                    </article>
+                    <article class="roadmap-item">
+                        <h3>Q3 2025</h3>
+                        <p>Lancement complet de la collection "Legatio Genesis" (10 000 NFTs).</p>
+                        <p>Introduction de nouvelles fonctionnalités pour $LEGS (ex. accès à des événements ou utilités exclusives).</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section team" id="team">
+                <h2>Notre Équipe</h2>
+                <div class="team-container">
+                    <article class="team-member">
+                        <h3>Rodrigues Delmar</h3>
+                        <p>Co-fondateur & CEO</p>
+                        <p>Expert en trading crypto et blockchain.</p>
+                    </article>
+                    <article class="team-member">
+                        <h3>Alexandre Perez</h3>
+                        <p>CTO</p>
+                        <p>Ingénieur blockchain spécialisé en smart contracts.</p>
+                    </article>
+                    <article class="team-member">
+                        <h3>Marie Balsan</h3>
+                        <p>COO</p>
+                        <p>Experte en régulation et conformité crypto.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section faq" id="faq">
+                <h2>Questions Fréquentes</h2>
+                <div class="token-benefits-list">
+                    <article class="token-benefit">
+                        <h3>Comment obtenir un NFT Legatio ?</h3>
+                        <p>Connectez MetaMask, achetez un "Legatio Genesis" dès 0.05 ETH.</p>
+                    </article>
+                    <article class="token-benefit">
+                        <h3>Quels sont les risques ?</h3>
+                        <p>Les bonus varient selon l’activité ; audits CertiK assurent la sécurité.</p>
+                    </article>
+                    <article class="token-benefit">
+                        <h3>Comment récupérer mes $LEGS ?</h3>
+                        <p>Utilisez notre DApp pour claim vos rewards via MetaMask.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section investors" id="investors">
+                <h2>Pour l'Écosystème</h2>
+                <p>Participez à notre vision collective sur Arbitrum.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://delmarcrypto.github.io/Pitch-Deck/" class="cta-button" target="_blank" rel="noopener noreferrer">Pitch Deck</a>
+                    <a href="https://delmarcrypto.github.io/White-Paper/" class="cta-button" target="_blank" rel="noopener noreferrer">White Paper</a>
+                    <a href="https://delmarcrypto.github.io/Business-Plan/" class="cta-button" target="_blank" rel="noopener noreferrer">Business Plan</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://x.com/rdb_legend" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://discord.com/channels/1347668715357077577/1347668716120182888" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="#faq">FAQ</a> | <a href="#privacy">Confidentialité</a> | <a href="#terms">Conditions</a>
+            </div>
+            <p>Contact : <a href="mailto:legatio.finance@gmail.com">legatio.finance@gmail.com</a> | © 2025 Legatio Finance</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.ethers.io/lib/ethers-5.7.2.umd.min.js" defer></script>
+    <script>
+        const contractAddress = "0x732F2d70Aa758a2D60fD81CD2ac14B6E92Ec5F44";
+        const contractABI = [
+            "function mintTier1() external payable",
+            "function mintTier2() external payable",
+            "function mintTier3() external payable",
+            "function mintTier4() external payable",
+            "function mintTier5() external payable"
+        ];
+
+        let provider, signer, contract, userAddress;
+
+        // Configuration des paliers de la pré-vente
+        const presalePhases = [
+            { name: "Pre-Seed", price: 0.01, goal: 1000000, tokensAvailable: 100000000 },
+            { name: "Early Seed", price: 0.02, goal: 2000000, tokensAvailable: 100000000 },
+            { name: "Seed", price: 0.03, goal: 2000000, tokensAvailable: 66666667 }
+        ];
+
+        let currentPhaseIndex = 0;
+        let totalRaised = 0;
+        let phaseRaised = 0;
+
+        // Fonction pour connecter MetaMask
+        async function connectMetaMask() {
+            if (!window.ethereum) {
+                document.getElementById('mint-message').innerHTML = 'MetaMask est requis.';
+                return;
+            }
+
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                userAddress = accounts[0];
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+                signer = provider.getSigner();
+                contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+                if (await window.ethereum.request({ method: 'eth_chainId' }) !== '0xa4b1') {
+                    await window.ethereum.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0xa4b1' }] });
+                }
+            } catch (e) {
+                document.getElementById('mint-message').innerHTML = e.message || 'Erreur de connexion.';
+            }
+        }
+
+        // Fonction pour le minting des NFTs
+        async function mintNFT(functionName, priceInEth) {
+            const mintMessage = document.getElementById('mint-message');
+            mintMessage.innerHTML = '';
+
+            try {
+                if (!window.ethereum) {
+                    mintMessage.innerHTML = 'MetaMask est requis.';
+                    return;
+                }
+
+                if (!userAddress) {
+                    await connectMetaMask();
+                    if (!userAddress) return;
+                }
+
+                const priceInWei = ethers.utils.parseEther(priceInEth);
+                const tx = await contract[functionName]({ value: priceInWei });
+                mintMessage.innerHTML = 'Transaction en cours...';
+                await tx.wait();
+                mintMessage.innerHTML = `NFT minté avec succès ! <a href="https://arbiscan.io/tx/${tx.hash}" target="_blank">Voir la transaction</a>`;
+            } catch (e) {
+                mintMessage.innerHTML = e.message || 'Erreur lors du minting.';
+            }
+        }
+
+        // Fonction pour mettre à jour l'affichage de la pré-vente
+        function updatePresaleDisplay() {
+            const currentPhase = presalePhases[currentPhaseIndex];
+            document.getElementById('current-phase').textContent = currentPhase.name;
+            document.getElementById('current-price').textContent = `${currentPhase.price} $`;
+            document.getElementById('amount-raised').textContent = `${phaseRaised.toLocaleString('fr-FR')} $`;
+            document.getElementById('current-goal').textContent = `${currentPhase.goal.toLocaleString('fr-FR')} $`;
+            document.getElementById('total-raised').textContent = `${totalRaised.toLocaleString('fr-FR')} $`;
+            
+            const phaseProgress = (phaseRaised / currentPhase.goal) * 100;
+            const totalProgress = (totalRaised / 5000000) * 100;
+            document.getElementById('presale-progress').value = phaseProgress;
+            document.getElementById('total-progress').value = totalProgress;
+
+            const legAmount = parseFloat(document.getElementById('leg-amount').value) || 0;
+            const totalCost = legAmount * currentPhase.price;
+            document.getElementById('total-cost').textContent = `${totalCost.toLocaleString('fr-FR')} $`;
+        }
+
+        // Fonction pour passer au palier suivant si l'objectif est atteint
+        function checkPhaseTransition() {
+            const currentPhase = presalePhases[currentPhaseIndex];
+            if (phaseRaised >= currentPhase.goal && currentPhaseIndex < presalePhases.length - 1) {
+                currentPhaseIndex++;
+                phaseRaised = 0;
+                updatePresaleDisplay();
+            }
+        }
+
+        // Fonction pour simuler l'achat de $LEGS
+        async function buyLegTokens() {
+            const legAmount = parseFloat(document.getElementById('leg-amount').value) || 0;
+            const currentPhase = presalePhases[currentPhaseIndex];
+            const totalCost = legAmount * currentPhase.price;
+
+            if (legAmount <= 0) {
+                document.getElementById('presale-message').classList.remove('hidden');
+                document.getElementById('presale-message').textContent = 'Veuillez entrer une quantité valide.';
+                return;
+            }
+
+            if (legAmount > currentPhase.tokensAvailable) {
+                document.getElementById('presale-message').classList.remove('hidden');
+                document.getElementById('presale-message').textContent = `Quantité trop élevée. Maximum disponible : ${currentPhase.tokensAvailable.toLocaleString('fr-FR')} $LEGS.`;
+                return;
+            }
+
+            try {
+                phaseRaised += totalCost;
+                totalRaised += totalCost;
+                currentPhase.tokensAvailable -= legAmount;
+
+                document.getElementById('presale-message').classList.remove('hidden');
+                document.getElementById('presale-message').textContent = `Achat simulé ! Vous avez réservé ${legAmount.toLocaleString('fr-FR')} $LEGS pour ${totalCost.toLocaleString('fr-FR')} $.`;
+
+                checkPhaseTransition();
+                updatePresaleDisplay();
+            } catch (e) {
+                document.getElementById('presale-message').classList.remove('hidden');
+                document.getElementById('presale-message').textContent = 'Erreur lors de l’achat. Veuillez réessayer.';
+            }
+        }
+
+        // Ajout d'un écouteur pour mettre à jour le coût total en temps réel
+        document.getElementById('leg-amount').addEventListener('input', updatePresaleDisplay);
+
+        // Initialisation de l'affichage de la pré-vente
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePresaleDisplay();
+        });
+    </script>
+</body>
+</html>
