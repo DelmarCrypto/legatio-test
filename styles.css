@@ -328,3 +328,106 @@ body::before {
         grid-template-columns: 1fr;
     }
 }
+
+/* styles.css */
+:root {
+    --primary: #00d4ff;
+    --accent-pink: #ff00ff;
+    --background: #0a0a23;
+    --text: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.navbar {
+    background-color: var(--background);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.header {
+    text-align: center;
+    padding: 3rem 0;
+    background: linear-gradient(45deg, var(--primary), var(--accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section {
+    padding: 2rem 0;
+}
+
+.section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary), var(--accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section p, .section ul {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.section ul {
+    padding-left: 1.5rem;
+}
+
+.section a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.section a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: var(--background);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.footer-content p {
+    margin: 0.5rem 0;
+}
+
+.footer-content a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.footer-content a:hover {
+    text-decoration: underline;
+}
+
+.social-links a {
+    margin: 0 0.5rem;
+    color: var(--text);
+    font-size: 1.5rem;
+}
+
+.back-to-top {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.back-to-top i {
+    margin-right: 0.5rem;
+}
