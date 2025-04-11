@@ -643,11 +643,17 @@
                         <span id="seconds">00</span> secondes
                     </div>
                 </div>
-                <form id="airdrop-form" class="airdrop-form" action="https://formspree.io/f/mpwpavjj" method="POST">
+                <form id="airdrop-form" class="airdrop-form" action="https://formsubmit.co/legatio.finance@gmail.com" method="POST">
                     <label for="email">Votre email :</label>
                     <input type="email" id="email" name="email" placeholder="Entrez votre email" required aria-label="Email pour inscription à l'airdrop">
                     <label for="wallet">Adresse de portefeuille (Arbitrum) :</label>
                     <input type="text" id="wallet" name="wallet" placeholder="Entrez votre adresse Arbitrum" required aria-label="Adresse de portefeuille Arbitrum">
+                    <!-- Champ caché pour le sujet -->
+                    <input type="hidden" name="_subject" value="Inscription à l'Airdrop de Legatio Finance">
+                    <!-- Désactiver le CAPTCHA -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <!-- Indiquer à FormSubmit de renvoyer une réponse JSON -->
+                    <input type="hidden" name="_template" value="table">
                     <button type="submit" class="cta-button">S’inscrire à l’Airdrop</button>
                 </form>
                 <p id="airdrop-message" class="hidden"></p>
@@ -751,96 +757,98 @@
                 <p class="investor-contact">Intéressé à investir ? <a href="mailto:invest@legatio.finance">Contactez-nous</a> pour plus d'informations.</p>
             </section>
 
-           <section class="section partner-logos">
-    <h2>Nos partenaires</h2>
-    <div class="partner-logos-grid">
-        <!-- LBank -->
-        <a href="https://www.lbank.com/" target="_blank" rel="noopener noreferrer" aria-label="Logo LBank">
-            <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
-                <title>Logo de LBank, partenaire de Legatio Finance pour le listing de $LEG</title>
-                <defs>
-                    <linearGradient id="lbankGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color: var(--primary);" />
-                        <stop offset="100%" style="stop-color: var(--accent-pink);" />
-                    </linearGradient>
-                </defs>
-                <rect x="5" y="5" width="110" height="40" rx="10" fill="none" stroke="url(#lbankGradient)" stroke-width="2"/>
-                <text x="15" y="35" font-family="Orbitron, sans-serif" font-size="20" fill="url(#lbankGradient)">LBank</text>
-                <circle cx="100" cy="25" r="5" fill="var(--primary)"/>
-            </svg>
-        </a>
-        <!-- Chainlink -->
-        <a href="https://chain.link/" target="_blank" rel="noopener noreferrer" aria-label="Logo Link">
-            <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
-                <title>Logo de Chainlink, partenaire de Legatio Finance pour les oracles</title>
-                <defs>
-                    <linearGradient id="chainlinkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color: var(--primary);" />
-                        <stop offset="100%" style="stop-color: var(--accent-pink);" />
-                    </linearGradient>
-                </defs>
-                <polygon points="15,15 35,5 55,15 55,35 35,45 15,35" fill="none" stroke="url(#chainlinkGradient)" stroke-width="3"/>
-                <text x="65" y="35" font-family="Orbitron, sans-serif" font-size="18" fill="url(#chainlinkGradient)">link</text>
-            </svg>
-        </a>
-        <!-- Rarible -->
-        <a href="https://rarible.com/" target="_blank" rel="noopener noreferrer" aria-label="Logo Rarible">
-            <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
-                <title>Logo de Rarible, partenaire de Legatio Finance pour la collaboration NFT</title>
-                <defs>
-                    <linearGradient id="raribleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color: var(--primary);" />
-                        <stop offset="100%" style="stop-color: var(--accent-pink);" />
-                    </linearGradient>
-                </defs>
-                <path d="M20 15 L30 35 L40 15 Z" fill="none" stroke="url(#raribleGradient)" stroke-width="3"/>
-                <text x="50" y="35" font-family="Orbitron, sans-serif" font-size="16" fill="url(#raribleGradient)">Rarible</text>
-            </svg>
-        </a>
-        <!-- Stepn -->
-        <a href="https://www.stepn.com/" target="_blank" rel="noopener noreferrer" aria-label="Logo Stepn">
-            <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
-                <title>Logo de Stepn, partenaire de Legatio Finance pour la collaboration communautaire</title>
-                <defs>
-                    <linearGradient id="stepnGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color: var(--primary);" />
-                        <stop offset="100%" style="stop-color: var(--accent-pink);" />
-                    </linearGradient>
-                </defs>
-                <rect x="15" y="15" width="30" height="20" fill="none" stroke="url(#stepnGradient)" stroke-width="2"/>
-                <text x="55" y="35" font-family="Orbitron, sans-serif" font-size="16" fill="url(#stepnGradient)">Stepn</text>
-            </svg>
-        </a>
-        <!-- OpenSea -->
-        <a href="https://opensea.io/" target="_blank" rel="noopener noreferrer" aria-label="Logo OpenSea">
-            <svg width="140" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
-                <title>Logo de OpenSea, partenaire de Legatio Finance pour le listing des NFTs</title>
-                <defs>
-                    <linearGradient id="openseaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color: var(--primary);" />
-                        <stop offset="100%" style="stop-color: var(--accent-pink);" />
-                    </linearGradient>
-                </defs>
-                <path d="M15 25 Q30 10 45 25 Q30 40 15 25" fill="none" stroke="url(#openseaGradient)" stroke-width="3"/>
-                <text x="55" y="35" font-family="Orbitron, sans-serif" font-size="14" fill="url(#openseaGradient)">OpenSea</text>
-            </svg>
-        </a>
-        <!-- Magic Eden -->
-        <a href="https://magiceden.io/" target="_blank" rel="noopener noreferrer" aria-label="Logo Magic Eden">
-            <svg width="150" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
-                <title>Logo de Magic Eden, partenaire de Legatio Finance pour le listing des NFTs</title>
-                <defs>
-                    <linearGradient id="magicEdenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color: var(--primary);" />
-                        <stop offset="100%" style="stop-color: var(--accent-pink);" />
-                    </linearGradient>
-                </defs>
-                <rect x="10" y="10" width="40" height="30" rx="5" fill="none" stroke="url(#magicEdenGradient)" stroke-width="2"/>
-                <text x="55" y="35" font-family="Orbitron, sans-serif" font-size="12" fill="url(#magicEdenGradient)">Magic Eden</text>
-            </svg>
-        </a>
-    </div>
-</section>
+            <section class="section partner-logos">
+                <h2>Nos partenaires</h2>
+                <div class="partner-logos-grid">
+                    <!-- LBank -->
+                    <a href="https://www.lbank.com/" target="_blank" rel="noopener noreferrer" aria-label="Logo LBank">
+                        <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
+                            <title>Logo de LBank, partenaire de Legatio Finance pour le listing de $LEG</title>
+                            <defs>
+                                <linearGradient id="lbankGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color: var(--primary);" />
+                                    <stop offset="100%" style="stop-color: var(--accent-pink);" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="5" y="5" width="110" height="40" rx="10" fill="none" stroke="url(#lbankGradient)" stroke-width="2"/>
+                            <text x="15" y="35" font-family="Orbitron, sans-serif" font-size="20" fill="url(#lbankGradient)">LBank</text>
+                            <circle cx="100" cy="25" r="5" fill="var(--primary)"/>
+                        </svg>
+                    </a>
+                    <!-- Chainlink -->
+                    <a href="https://chain.link/" target="_blank" rel="noopener noreferrer" aria-label="Logo Link">
+                        <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
+                            <title>Logo de Chainlink, partenaire de Legatio Finance pour les oracles</title>
+                            <defs>
+                                <linearGradient id="chainlinkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color: var(--primary);" />
+                                    <stop offset="100%" style="stop-color: var(--accent-pink);" />
+                                </linearGradient>
+                            </defs>
+                            <polygon points="15,15 35,5 55,15 55,35 35,45 15,35" fill="none" stroke="url(#chainlinkGradient)" stroke-width="3"/>
+                            <text x="65" y="35" font-family="Orbitron, sans-serif" font-size="18" fill="url(#chainlinkGradient)">link</text>
+                        </svg>
+                    </a>
+                    <!-- Rarible -->
+                    <a href="https://rarible.com/" target="_blank" rel="noopener noreferrer" aria-label="Logo Rarible">
+                        <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
+                            <title>Logo de Rarible, partenaire de Legatio Finance pour la collaboration NFT</title>
+                            <defs>
+                                <linearGradient id="raribleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color: var(--primary);" />
+                                    <stop offset="100%" style="stop-color: var(--accent-pink);" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M20 15 L30 35 L40 15 Z" fill="none" stroke="url(#raribleGradient)" stroke-width="3"/>
+                            <text x="50" y="35" font-family="Orbitron, sans-serif" font-size="16" fill="url(#raribleGradient)">Rarible</text>
+                        </svg>
+                    </a>
+                    <!-- Stepn -->
+                    <a href="https://www.stepn.com/" target="_blank" rel="noopener noreferrer" aria-label="Logo Stepn">
+                        <svg width="120" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
+                            <title>Logo de Stepn, partenaire de Legatio Finance pour la collaboration communautaire</title>
+                            <defs>
+                                <linearGradient id="stepnGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color: var(--primary);" />
+                                    <stop offset="100%" style="stop-color: var(--accent-pink);" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="15" y="15" width="30" height="20" fill="none" stroke="url(#stepnGradient)" stroke-width="2"/>
+                            <text x="55" y="35" font-family="Orbitron, sans-serif" font-size="16" fill="url(#stepnGradient)">Stepn</text>
+                        </svg>
+                    </a>
+                    <!-- OpenSea -->
+                    <a href="https://opensea.io/" target="_blank" rel="noopener noreferrer" aria-label="Logo OpenSea">
+                        <svg width="140" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
+                            <title>Logo de OpenSea, partenaire de Legatio Finance pour le listing des NFTs</title>
+                            <defs>
+                                <linearGradient id="openseaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color: var(--primary);" />
+                                    <stop offset="100%" style="stop-color: var(--accent-pink);" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M15 25 Q30 10 45 25 Q30 40 15 25" fill="none" stroke="url(#openseaGradient)" stroke-width="3"/>
+                            <text x="55" y="35" font-family="Orbitron, sans-serif" font-size="14" fill="url(#openseaGradient)">OpenSea</text>
+                        </svg>
+                    </a>
+                    <!-- Magic Eden -->
+                    <a href="https://magiceden.io/" target="_blank" rel="noopener noreferrer" aria-label="Logo Magic Eden">
+                        <svg width="150" height="50" xmlns="http://www.w3.org/2000/svg" class="partner-logo">
+                            <title>Logo de Magic Eden, partenaire de Legatio Finance pour le listing des NFTs</title>
+                            <defs>
+                                <linearGradient id="magicEdenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color: var(--primary);" />
+                                    <stop offset="100%" style="stop-color: var(--accent-pink);" />
+                                </linearGradient>
+                            </defs>
+                            <rect x="10" y="10" width="40" height="30" rx="5" fill="none" stroke="url(#magicEdenGradient)" stroke-width="2"/>
+                            <text x="55" y="35" font-family="Orbitron, sans-serif" font-size="12" fill="url(#magicEdenGradient)">Magic Eden</text>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
 
     <footer class="footer">
         <div class="footer-content">
@@ -923,11 +931,12 @@
                     headers: { 'Accept': 'application/json' }
                 });
 
-                if (response.ok) {
+                const result = await response.json();
+                if (response.ok && result.success) {
                     message.textContent = 'Inscription réussie ! Vous êtes éligible pour l’airdrop de $LEG en Q1 2026.';
                     form.reset();
                 } else {
-                    message.textContent = 'Erreur lors de l’inscription. Veuillez réessayer.';
+                    message.textContent = result.message || 'Erreur lors de l’inscription. Veuillez réessayer.';
                 }
             } catch (e) {
                 message.textContent = 'Erreur lors de l’inscription. Veuillez réessayer.';
