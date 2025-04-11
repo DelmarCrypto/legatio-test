@@ -652,8 +652,8 @@
                     <input type="hidden" name="_subject" value="Inscription à l'Airdrop de Legatio Finance">
                     <!-- Désactiver le CAPTCHA -->
                     <input type="hidden" name="_captcha" value="false">
-                    <!-- Indiquer à FormSubmit de renvoyer une réponse JSON -->
-                    <input type="hidden" name="_template" value="table">
+                    <!-- Ajouter l'URL pour éviter les problèmes CORS -->
+                    <input type="hidden" name="_url" value="https://delmarcrypto.github.io/legatio-finance/">
                     <button type="submit" class="cta-button">S’inscrire à l’Airdrop</button>
                 </form>
                 <p id="airdrop-message" class="hidden"></p>
@@ -931,14 +931,27 @@
                     headers: { 'Accept': 'application/json' }
                 });
 
-                const result = await response.json();
-                if (response.ok && result.success) {
+                console.log('Code HTTP de la réponse :', response.status);
+                console.log('Réponse ok ?', response.ok);
+
+                let result;
+                try {
+                    result = await response.json();
+                    console.log('Réponse JSON de FormSubmit :', result);
+                } catch (jsonError) {
+                    console.error('Erreur lors du parsing JSON :', jsonError);
+                    result = {};
+                }
+
+                // Considérer la soumission comme réussie si le code HTTP est 200
+                if (response.ok) {
                     message.textContent = 'Inscription réussie ! Vous êtes éligible pour l’airdrop de $LEG en Q1 2026.';
                     form.reset();
                 } else {
                     message.textContent = result.message || 'Erreur lors de l’inscription. Veuillez réessayer.';
                 }
             } catch (e) {
+                console.error('Erreur lors de la soumission :', e);
                 message.textContent = 'Erreur lors de l’inscription. Veuillez réessayer.';
             }
         });
